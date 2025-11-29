@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400">
+  <defs>
+    <linearGradient id="c1" x1="0" x2="1">
+      <stop offset="0" stop-color="#60a5fa" />
+      <stop offset="1" stop-color="#a78bfa" />
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" rx="20" fill="#f8fafc" />
+  <g transform="translate(40,30)">
+    <ellipse cx="110" cy="100" rx="90" ry="60" fill="rgba(99,102,241,0.08)" />
+    <ellipse cx="260" cy="220" rx="160" ry="90" fill="rgba(99,102,241,0.06)" />
+
+    <g transform="translate(400,40)">
+      <rect x="-16" y="-16" width="160" height="120" rx="14" fill="#fff" stroke="#e6e9f2" />
+      <circle cx="40" cy="36" r="26" fill="url(#c1)" opacity="0.95" />
+      <rect x="86" y="28" rx="6" width="50" height="12" fill="#e6e9f2" />
+      <rect x="10" y="74" rx="6" width="120" height="12" fill="#e6e9f2" />
+    </g>
+
+    <g transform="translate(40,180)">
+      <rect x="0" y="0" width="120" height="68" rx="12" fill="#fff" stroke="#e6e9f2" />
+      <rect x="10" y="10" width="40" height="12" rx="6" fill="#60a5fa" />
+      <rect x="60" y="10" width="40" height="12" rx="6" fill="#a78bfa" />
+    </g>
+  </g>
+
+</svg>

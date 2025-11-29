@@ -60,7 +60,7 @@ const TopDoctors = () => {
 
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
-      <h1 className='text-3xl font-medium'>Top Doctors to Book</h1>
+      <h1 className='text-3xl font-medium animate-enter'>Top Doctors to Book</h1>
       <p className='sm:w-1/3 text-center text-sm'>Simply browse through our extensive list of trusted doctors.</p>
 
       {/* Updated Grid: 5 doctors per row on lg+ screens */}
@@ -70,7 +70,8 @@ const TopDoctors = () => {
             <div
               onClick={() => { navigate(`/appointment/${item._id}`); scrollTo(0, 0) }}
               key={index}
-              className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-300'
+              className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-300 animate-fade'
+              style={{ animationDelay: `${index * 60}ms` }}
             >
               <img className='bg-blue-50 w-full h-40 object-cover' src={imageMap[item._id] || item.image} alt="" />
               <div className='p-4'>

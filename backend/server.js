@@ -7,6 +7,7 @@ import adminRouter from './routes/adminRoute.js';
 import doctorRouter from './routes/doctorRoute.js';
 import userRouter from './routes/userRoute.js';
 import jobRouter from './routes/jobRoute.js';
+import chatRouter from './routes/chatRoute.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -14,7 +15,10 @@ connectDB();
 connectCloudinary();
 
 //middleware
-app.use(cors());
+// Configure CORS to allow frontend origin when provided, otherwise allow all
+const corsOptions = {}
+if (process.env.FRONTEND_URL) corsOptions.origin = process.env.FRONTEND_URL
+app.use(cors(Object.keys(corsOptions).length ? corsOptions : undefined));
 app.use(express.json());
 
 //api endpoints
@@ -22,6 +26,7 @@ app.use('/api/admin',adminRouter)
 app.use('/api/doctor',doctorRouter)
 app.use('/api/user',userRouter)
 app.use('/api/jobs', jobRouter)
+app.use('/api/chat', chatRouter)
 
 
 app.get('/', (req, res) => {

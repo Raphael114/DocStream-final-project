@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 const About = () => {
   return (
-    <div>
+    <div className='animate-enter'>
       <div className='text-center text-2xl pt-10 text-gray-500'>
         <p><span className='text-gray-700 font-medium'>ABOUT </span>US</p>
       </div>

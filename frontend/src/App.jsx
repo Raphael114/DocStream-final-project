@@ -1,5 +1,5 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Doctors from './pages/Doctors'
 
@@ -11,15 +11,33 @@ import MyProfile from './pages/MyProfile'
 import Appointment from './pages/Appointment'
 import Jobs from './pages/Jobs'
 import Navbar from './components/Navbar'
+import Chatbot from './components/Chatbot'
 import Footer from './components/Footer'
   import { ToastContainer, toast } from 'react-toastify';
 
+import { assets } from './assets/assets'
+
 const App = () => {
+  const location = useLocation()
+
+  useEffect(() => {
+    const pre = document.getElementById('preloader')
+    if (pre) {
+      // add a short fade before removing so it feels smooth
+      pre.classList.add('preloader-removed')
+      setTimeout(() => pre.remove(), 500)
+    }
+  }, [])
   return (
-    <div className='mx-4 sm:mx-[10%]'>
+    <div className='mx-4 sm:mx-[10%] relative'>
+      {/* faint logo background for all pages */}
+      <div className='global-logo-bg' aria-hidden>
+        <img src={assets.logo} alt='' />
+      </div>
       <ToastContainer/>
-      <Navbar/>
-      <Routes>
+      <Navbar />
+      <div key={location.pathname} className='relative z-10 animate-enter'>
+        <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/doctors' element={<Doctors />} />
         <Route path='/doctors/:speciality' element={<Doctors />} />
@@ -33,8 +51,10 @@ const App = () => {
         <Route path='/my-profile' element={<MyProfile />} />
         <Route path='/appointment/:docId' element={<Appointment/>}></Route>
 
-      </Routes>
+        </Routes>
+      </div>
       <Footer/>
+      <Chatbot />
     </div>
   )
 }

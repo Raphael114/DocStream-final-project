@@ -5,8 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Priscripto Panel</title>
+    <style>
+      #preloader{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ffffff,#f3f6ff);z-index:99999}
+      #preloader img{width:160px;height:auto;display:block;filter:drop-shadow(0 8px 30px rgba(11,110,255,0.12));animation:adminpre 1.6s infinite}
+      @keyframes adminpre{0%,100%{transform:translateY(0)}50%{transform:translateY(-5%)}}
+      .preloader-removed{opacity:0;pointer-events:none;transition:opacity .45s ease}
+    </style>
   </head>
   <body>
+    <div id="preloader">
+      <img src="/src/assets/logo2.svg" alt="DocStream" />
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

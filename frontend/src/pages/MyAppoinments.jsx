@@ -57,7 +57,7 @@ const { data } = await axios.post(
   }, [token])
 
   return appointments && (
-    <div>
+    <div className='animate-enter'>
       <p className='pb-3 mt-12 font-medium text-zinc-700 border-b'>My Appointments</p>
       <div>
         {appointments.map((item, index) => {

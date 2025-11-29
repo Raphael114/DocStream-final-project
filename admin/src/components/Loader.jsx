@@ -1,5 +1,6 @@
 import React from 'react'
 import './Loader.css'
+import { assets } from '../assets/assets'
 
 const Loader = () => {
     return (
@@ -9,7 +10,13 @@ const Loader = () => {
                 <circle className="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
                 <circle className="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
                 <circle className="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
-            </svg>
+                                {/* logo in center */}
+                                <foreignObject x="80" y="80" width="80" height="80">
+                                    <div style={{display:'flex',alignItems:'center',justifyContent:'center',width:'100%',height:'100%'}}>
+                                        <img src={assets.logo} alt="DocStream" style={{width:'100%',height:'100%',objectFit:'contain'}} />
+                                    </div>
+                                </foreignObject>
+                        </svg>
         </div>
     )
 }

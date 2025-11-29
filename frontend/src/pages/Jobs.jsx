@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 
 const jobsData = [
@@ -78,7 +79,7 @@ const Jobs = () => {
     }
 
     return (
-      <div className='my-10'>
+      <div className='my-10 animate-enter'>
         <button onClick={() => navigate('/jobs')} className='text-sm text-blue-600 mb-4'>&larr; Back to openings</button>
         <h1 className='text-2xl font-semibold mb-2'>{job.title}</h1>
         <p className='text-sm text-gray-500 mb-4'>{job.team} • {job.location} • {job.type}</p>
@@ -97,12 +98,19 @@ const Jobs = () => {
 
   return (
     <div className='my-10'>
-      <h1 className='text-2xl font-semibold mb-4'>Open Positions</h1>
-      <p className='text-gray-600 mb-6'>Explore current openings at DocStream. Click a role to view details or apply.</p>
+      <div className='flex flex-col md:flex-row items-center gap-6 mb-8'>
+        <div className='flex-1 animate-enter'>
+          <h1 className='text-3xl md:text-4xl font-semibold'>Open Positions</h1>
+          <p className='text-gray-600 mt-2'>Explore current openings at DocStream. Click a role to view details or apply.</p>
+        </div>
+        <div className='hidden md:block md:w-[380px] lg:w-[520px]'>
+          <img src={assets.careers_graphic} alt='careers' className='w-full rounded-lg shadow' />
+        </div>
+      </div>
 
       <div className='grid gap-6 md:grid-cols-2'>
-        {jobs.map((job) => (
-          <div key={job._id} className='border rounded-lg p-4 hover:shadow-md transition'>
+        {jobs.map((job, ndx) => (
+          <div key={job._id} className='border rounded-lg p-4 hover:shadow-md transition animate-fade' style={{ animationDelay: `${ndx * 80}ms` }}>
             <div className='flex justify-between items-start'>
               <div>
                 <h2 className='text-lg font-medium'>{job.title}</h2>
@@ -121,7 +129,7 @@ const Jobs = () => {
                 <input name='name' value={cardForm.name} onChange={(e) => setCardForm({ ...cardForm, name: e.target.value })} placeholder='Your name' className='w-full mb-2 p-2 border rounded' />
                 <input name='email' value={cardForm.email} onChange={(e) => setCardForm({ ...cardForm, email: e.target.value })} placeholder='Email' className='w-full mb-2 p-2 border rounded' />
                 <textarea name='message' value={cardForm.message} onChange={(e) => setCardForm({ ...cardForm, message: e.target.value })} placeholder='Message (optional)' className='w-full mb-2 p-2 border rounded' />
-                <div className='flex gap-2'>
+                <div className='flex gap-2 animate-enter' style={{ animationDelay: '120ms' }}>
                   <button onClick={async () => {
                     try {
                       await axios.post(`${backendUrl}/api/jobs/${job._id}/apply`, cardForm)

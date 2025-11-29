@@ -7,10 +7,13 @@ import { FaGithub } from "react-icons/fa"
 const Footer = () => {
     return (
         <div className='md:mx-10'>
+            <div className='w-full -mt-10 lg:-mt-20 pointer-events-none select-none'>
+                <img src={assets.footer_wave} alt="footer wave" className='w-full'/>
+            </div>
             <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
                 {/*left section*/}
                 <div>
-                    <img className='mb-5 w-40' src={assets.logo} alt="" />
+                    <img className='mb-5 w-40 animate-fade' style={{animationDelay:'40ms'}} src={assets.logo} alt="" />
                     <p className='w-full md:w-2/3 text-gray-600 leading-6'>DocStream connects you with trusted healthcare professionals anytime, anywhere. Book appointments, access medical expertise, and manage your health—all in one seamless, secure platform. Your well-being is our priority, and we’re committed to making quality care accessible and convenient for everyone.</p>
                 </div>
                 {/*center section*/}
@@ -37,7 +40,7 @@ const Footer = () => {
 
             <div>
                 <hr />
-                <p className='py-5 text-sm text-center'>Copyright 2025@ DocStream -All Right Reserved</p>
+                <p className='py-5 text-sm text-center animate-fade' style={{animationDelay:'120ms'}}>Copyright 2025@ DocStream -All Right Reserved</p>
             </div>
         </div>
     )

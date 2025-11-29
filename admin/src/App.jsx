@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Login from './pages/Login'
 import { Toaster } from 'react-hot-toast';
 import { AdminContext } from './context/AdminContext';
@@ -13,6 +13,14 @@ import DoctorsList from './pages/Admin/DoctorsList';
 const App = () => {
 
   const {aToken} = useContext(AdminContext)
+
+  useEffect(() => {
+    const pre = document.getElementById('preloader')
+    if (pre) {
+      pre.classList.add('preloader-removed')
+      setTimeout(() => pre.remove(), 450)
+    }
+  }, [])
 
   return aToken ?(
     <div className='bg-[#F8F9FD]'>

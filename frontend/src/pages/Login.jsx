@@ -56,8 +56,8 @@ const Login = () => {
 
 
   return (
-    <form className='min-h-[80vh] flex items-center' onSubmit={handleSubmit}>
-      <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 rounded-xl text-zinc-600 text-sm shadow-lg'>
+    <form className='min-h-[80vh] flex items-center animate-enter' onSubmit={handleSubmit}>
+      <div className='flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 rounded-xl text-zinc-600 text-sm shadow-lg animate-fade' style={{animationDelay:'70ms'}}>
         <p className='text-2xl font-semibold'>{state === "Sign Up" ? "Create Account" : "Login"}</p>
         <p>Please {state === "Sign Up" ? "sign up" : "login"} to book an appointment</p>
         {state === "Sign Up" && <div className='w-full'>

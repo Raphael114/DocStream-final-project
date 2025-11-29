@@ -30,6 +30,9 @@ import doc12 from './doc12.png'
 import doc13 from './doc13.png'
 import doc14 from './doc14.png'
 import doc15 from './doc15.png'
+import hero_medical from './hero_medical.svg'
+import careers_graphic from './careers_graphic.svg'
+import footer_wave from './footer_wave.svg'
 import Dermatologist from './Dermatologist.svg'
 import Gastroenterologist from './Gastroenterologist.svg'
 import General_physician from './General_physician.svg'
@@ -55,7 +58,8 @@ export const assets = {
     dropdown_icon,
     upload_icon,
     stripe_logo,
-    razorpay_logo
+    razorpay_logo,
+    hero_medical, careers_graphic, footer_wave
 }
 
 export const specialityData = [
