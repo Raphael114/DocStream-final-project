@@ -5,6 +5,7 @@ import { assets } from '../assets/assets';
 import RelatedDoctors from '../components/RelatedDoctors';
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { getDoctorImage } from '../assets/assets';
 
 const Appointment = () => {
   const { docId } = useParams();
@@ -136,7 +137,7 @@ const Appointment = () => {
         {/* Doctor Details */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div>
-            <img className="bg-blue-400 w-full sm:max-w-72 rounded-lg" src={docInfo.image} alt="Doctor" />
+            <img className="bg-blue-400 w-full sm:max-w-72 rounded-lg" src={getDoctorImage(docInfo.image)} alt={docInfo.name} />
           </div>
 
           <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">

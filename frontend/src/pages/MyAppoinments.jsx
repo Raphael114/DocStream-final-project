@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import { getDoctorImage } from '../assets/assets'
 
 const MyAppointments = () => {
 
@@ -64,7 +65,7 @@ const { data } = await axios.post(
           return (
             <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key={index}>
               <div>
-                <img className='w-32 bg-indigo-50' src={item.docData.image} alt="" />
+                <img className='w-32 bg-indigo-50' src={getDoctorImage(item.docData.image)} alt={item.docData.name} />
               </div>
               <div className='flex-1 text-sm text-zinc-600'>
                 <p className='text-neutral-800 font-semibold'>{item.docData.name}</p>

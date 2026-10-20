@@ -7,7 +7,7 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
 
     const [doctors, setDoctors] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
@@ -53,9 +53,12 @@ const AppContextProvider = (props) => {
         loadUserProfileData
     }
 
-    // Run only once (on mount) to fetch doctors
     useEffect(() => {
-        getDoctorsData()
+        const timer = setTimeout(() => {
+            getDoctorsData()
+        }, 2000)
+
+        return () => clearTimeout(timer)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
