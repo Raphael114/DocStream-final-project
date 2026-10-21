@@ -62,6 +62,7 @@ export const assets = {
     hero_medical, careers_graphic, footer_wave
 }
 
+<<<<<<< HEAD
 export const doctorImages = [
     doc1, doc2, doc3, doc4, doc5,
     doc6, doc7, doc8, doc9, doc10,
@@ -77,6 +78,28 @@ export const getDoctorImageUrl = (image, backendUrl) => {
     return baseUrl ? `${baseUrl}/${imagePath}` : image
 }
 
+=======
+export const doctorImages = {
+    'doc1.png': doc1,
+    'doc2.png': doc2,
+    'doc3.png': doc3,
+    'doc4.png': doc4,
+    'doc5.png': doc5,
+    'doc6.png': doc6,
+    'doc7.png': doc7,
+    'doc8.png': doc8,
+    'doc9.png': doc9,
+    'doc10.png': doc10,
+    'doc11.png': doc11,
+    'doc12.png': doc12,
+    'doc13.png': doc13,
+    'doc14.png': doc14,
+    'doc15.png': doc15
+}
+
+export const getDoctorImage = image => doctorImages[image] || image
+
+>>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
 export const specialityData = [
     {
         speciality: 'General physician',

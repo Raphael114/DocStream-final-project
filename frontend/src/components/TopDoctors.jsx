@@ -1,11 +1,19 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
+<<<<<<< HEAD
 import DoctorImage from './DoctorImage'
 
 const TopDoctors = () => {
   const navigate = useNavigate()
   const { doctors, backendUrl } = useContext(AppContext)
+=======
+import { getDoctorImage } from '../assets/assets'
+
+const TopDoctors = () => {
+  const navigate = useNavigate()
+  const { doctors } = useContext(AppContext);
+>>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
 
   return (
     <div className='flex flex-col items-center gap-4 my-16 text-gray-900 md:mx-10'>
@@ -22,7 +30,11 @@ const TopDoctors = () => {
               className='border border-blue-200 rounded-xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-300 animate-fade'
               style={{ animationDelay: `${index * 60}ms` }}
             >
+<<<<<<< HEAD
               <DoctorImage className='bg-blue-50 w-full h-40 object-cover' image={item.image} backendUrl={backendUrl} index={index} name={item.name} />
+=======
+              <img className='bg-blue-50 w-full h-40 object-cover' src={getDoctorImage(item.image)} alt={item.name} />
+>>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
               <div className='p-4'>
                 <div className={`flex items-center gap-2 text-sm ${item.available ? "text-green-500" : "text-gray-500"}`}>
                   <p className={`w-2 h-2 rounded-full ${item.available ? 'bg-green-500' : 'bg-gray-500'}`}></p>

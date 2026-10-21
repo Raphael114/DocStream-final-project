@@ -2,7 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify';
+<<<<<<< HEAD
 import DoctorImage from '../components/DoctorImage';
+=======
+import { getDoctorImage } from '../assets/assets'
+>>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
 
 const MyAppointments = () => {
 
@@ -65,7 +69,11 @@ const { data } = await axios.post(
           return (
             <div className='grid grid-cols-[1fr_2fr] gap-4 sm:flex sm:gap-6 py-2 border-b' key={index}>
               <div>
+<<<<<<< HEAD
                 <DoctorImage className='w-32 bg-indigo-50' image={item.docData.image} backendUrl={backendUrl} index={index} name={item.docData.name} />
+=======
+                <img className='w-32 bg-indigo-50' src={getDoctorImage(item.docData.image)} alt={item.docData.name} />
+>>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
               </div>
               <div className='flex-1 text-sm text-zinc-600'>
                 <p className='text-neutral-800 font-semibold'>{item.docData.name}</p>

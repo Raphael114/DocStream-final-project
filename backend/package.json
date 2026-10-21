@@ -9,6 +9,7 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "seed": "node scripts/seedDoctors.js",
+    "seed:nigerian-doctors": "node scripts/seedNigerianDoctors.js",
     "seed:jobs": "node scripts/seedJobs.js"
   },
   "author": "",

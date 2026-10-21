@@ -32,6 +32,7 @@ const doctorsByImage = [
 
 const doctorList = async (req,res)=> {
     try {
+<<<<<<< HEAD
         const records = await doctorModel.find({
             email: { $in: doctorsByImage.map(doctor => doctor.email) }
         }).select('-password')
@@ -55,6 +56,9 @@ const doctorList = async (req,res)=> {
                 message: 'The doctor catalog is incomplete. Run npm run seed in the backend directory.'
             })
         }
+=======
+        const doctors = await doctorModel.find({}).sort({ date: -1 }).select(['-password','-email'])
+>>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
 
         res.json({success:true,doctors})
     } catch (error) {
