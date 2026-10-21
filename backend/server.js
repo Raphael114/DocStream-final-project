@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import connectDB from './config/mongodb.js';
 import connectCloudinary from './config/cloudinary.js';
 import adminRouter from './routes/adminRoute.js';
@@ -11,6 +13,7 @@ import chatRouter from './routes/chatRoute.js';
 
 const app = express();
 const port = process.env.PORT || 4000;
+const backendDirectory = path.dirname(fileURLToPath(import.meta.url));
 connectDB();
 connectCloudinary();
 
@@ -20,6 +23,7 @@ const corsOptions = {}
 if (process.env.FRONTEND_URL) corsOptions.origin = process.env.FRONTEND_URL
 app.use(cors(Object.keys(corsOptions).length ? corsOptions : undefined));
 app.use(express.json());
+app.use('/doctor-images', express.static(path.resolve(backendDirectory, 'doctor-images')));
 
 //api endpoints
 app.use('/api/admin',adminRouter)

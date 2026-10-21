@@ -53,9 +53,10 @@ const AppContextProvider = (props) => {
         loadUserProfileData
     }
 
-    // Run only once (on mount) to fetch doctors
+    // Fetch doctors two seconds after the app mounts.
     useEffect(() => {
-        getDoctorsData()
+        const timeoutId = setTimeout(getDoctorsData, 2000)
+        return () => clearTimeout(timeoutId)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
