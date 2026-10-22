@@ -1,89 +1,93 @@
-import { createContext, useEffect, useState } from "react";
-import axios from 'axios'
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
-
-export const AppContext = createContext()
+import { AppContext } from "./AppContext.js";
 
 const AppContextProvider = (props) => {
+    const currencySymbol = "$";
+    const backendUrl =
+        import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
 
-    const currencySymbol = '$'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000'
-
-    const [doctors, setDoctors] = useState([])
-    const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false)
-    const [userData, setUserData] = useState(false)
+    const [doctors, setDoctors] = useState([]);
+    const [token, setToken] = useState(
+        localStorage.getItem("token")
+            ? localStorage.getItem("token")
+            : false
+    );
+    const [userData, setUserData] = useState(false);
 
     // Fetch all doctors
     const getDoctorsData = async () => {
         try {
-            const { data } = await axios.get(backendUrl + '/api/doctor/list')
+            const { data } = await axios.get(
+                backendUrl + "/api/doctor/list"
+            );
+
             if (data.success) {
-                setDoctors(data.doctors)
+                setDoctors(data.doctors);
             } else {
-                toast.error(data.message)
+                toast.error(data.message);
             }
         } catch (error) {
-            console.log(error)
-            toast.error(error.message)
+            console.log(error);
+            toast.error(error.message);
         }
-    }
+    };
 
     // Fetch user profile
     const loadUserProfileData = async () => {
         try {
             const { data } = await axios.get(
-                backendUrl + '/api/user/get-profile',
+                backendUrl + "/api/user/get-profile",
                 { headers: { token } }
-            )
+            );
+
             if (data.success) {
-                setUserData(data.userData)
+                setUserData(data.userData);
             } else {
-                toast.error(data.message)
+                toast.error(data.message);
             }
         } catch (error) {
-            console.log(error)
-            toast.error(error.message)
+            console.log(error);
+            toast.error(error.message);
         }
-    }
+    };
 
     const value = {
-        doctors,getDoctorsData, currencySymbol,
-        token, setToken,
-        backendUrl, setUserData, userData,
-        loadUserProfileData
-    }
+        doctors,
+        getDoctorsData,
+        currencySymbol,
+        token,
+        setToken,
+        backendUrl,
+        setUserData,
+        userData,
+        loadUserProfileData,
+    };
 
-<<<<<<< HEAD
-    // Fetch doctors two seconds after the app mounts.
+    // Fetch doctors two seconds after the app mounts
     useEffect(() => {
-        const timeoutId = setTimeout(getDoctorsData, 2000)
-        return () => clearTimeout(timeoutId)
-=======
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            getDoctorsData()
-        }, 2000)
+        const timeoutId = setTimeout(getDoctorsData, 2000);
 
-        return () => clearTimeout(timer)
->>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
+        return () => clearTimeout(timeoutId);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, []);
 
     // Run when token changes
     useEffect(() => {
         if (token) {
-            loadUserProfileData()
+            loadUserProfileData();
         } else {
-            setUserData(false)
+            setUserData(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [token])
+    }, [token]);
 
     return (
         <AppContext.Provider value={value}>
             {props.children}
         </AppContext.Provider>
-    )
-}
+    );
+};
 
 export default AppContextProvider;

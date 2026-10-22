@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Doctors from './pages/Doctors'
@@ -13,21 +13,13 @@ import Jobs from './pages/Jobs'
 import Navbar from './components/Navbar'
 import Chatbot from './components/Chatbot'
 import Footer from './components/Footer'
-  import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 import { assets } from './assets/assets'
 
 const App = () => {
   const location = useLocation()
 
-  useEffect(() => {
-    const pre = document.getElementById('preloader')
-    if (pre) {
-      // add a short fade before removing so it feels smooth
-      pre.classList.add('preloader-removed')
-      setTimeout(() => pre.remove(), 500)
-    }
-  }, [])
   return (
     <div className='mx-4 sm:mx-[10%] relative'>
       {/* faint logo background for all pages */}

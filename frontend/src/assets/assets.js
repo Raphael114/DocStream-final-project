@@ -62,23 +62,6 @@ export const assets = {
     hero_medical, careers_graphic, footer_wave
 }
 
-<<<<<<< HEAD
-export const doctorImages = [
-    doc1, doc2, doc3, doc4, doc5,
-    doc6, doc7, doc8, doc9, doc10,
-    doc11, doc12, doc13, doc14, doc15
-]
-
-export const getDoctorImageUrl = (image, backendUrl) => {
-    if (!image) return ''
-    if (/^https?:\/\//i.test(image)) return image
-
-    const baseUrl = backendUrl?.replace(/\/+$/, '')
-    const imagePath = image.replace(/^\/+/, '')
-    return baseUrl ? `${baseUrl}/${imagePath}` : image
-}
-
-=======
 export const doctorImages = {
     'doc1.png': doc1,
     'doc2.png': doc2,
@@ -97,9 +80,21 @@ export const doctorImages = {
     'doc15.png': doc15
 }
 
-export const getDoctorImage = image => doctorImages[image] || image
+export const getDoctorImage = image => {
+    if (!image) return ''
+    const imageName = image.split(/[\\/]/).pop().split('?')[0]
+    return doctorImages[imageName] || image
+}
 
->>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
+export const getDoctorImageUrl = (image, backendUrl) => {
+    if (!image) return ''
+    if (/^https?:\/\//i.test(image)) return image
+
+    const baseUrl = backendUrl?.replace(/\/+$/, '')
+    const imagePath = image.replace(/^\/+/, '')
+    return baseUrl ? `${baseUrl}/${imagePath}` : image
+}
+
 export const specialityData = [
     {
         speciality: 'General physician',

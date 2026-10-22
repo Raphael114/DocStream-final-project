@@ -1,8 +1,8 @@
 import React from 'react'
-import { doctorImages, getDoctorImageUrl } from '../assets/assets'
+import { doctorImages, getDoctorImage, getDoctorImageUrl } from '../assets/assets'
 
 const DoctorImage = ({ image, backendUrl, index = 0, name, className = '' }) => {
-  const fallbackImage = doctorImages[index % doctorImages.length]
+  const fallbackImage = getDoctorImage(Object.keys(doctorImages)[index % Object.keys(doctorImages).length])
   const imageUrl = getDoctorImageUrl(image, backendUrl) || fallbackImage
 
   const showFallbackImage = (event) => {

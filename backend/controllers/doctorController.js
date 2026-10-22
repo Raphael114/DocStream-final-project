@@ -1,3 +1,4 @@
+
 import doctorModel from "../models/doctorModel.js";
 
 const doctorsByImage = [
@@ -16,55 +17,84 @@ const doctorsByImage = [
     { email: 'amaka.udeh+general@example.com', name: 'Amaka Udeh' },
     { email: 'yakubu.danjuma+gyne@example.com', name: 'Yakubu Danjuma' },
     { email: 'nneka.ekwueme+general@example.com', name: 'Nneka Ekwueme' }
-]
+];
 
- const changeAvailability = async (req, res) => {
+const changeAvailability = async (req, res) => {
     try {
         const { docId } = req.body;
-        const docData = await doctorModel.findById(docId)
-        await doctorModel.findByIdAndUpdate(docId, { available: !docData.available })
-        res.json({ success: true, message: "Availability change" })
+
+        const docData = await doctorModel.findById(docId);
+
+        if (!docData) {
+            return res.status(404).json({
+                success: false,
+                message: "Doctor not found"
+            });
+        }
+
+        await doctorModel.findByIdAndUpdate(docId, {
+            available: !docData.available
+        });
+
+        return res.json({
+            success: true,
+            message: "Availability changed successfully"
+        });
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message })
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
-}
+};
 
-const doctorList = async (req,res)=> {
+const doctorList = async (req, res) => {
     try {
-<<<<<<< HEAD
         const records = await doctorModel.find({
-            email: { $in: doctorsByImage.map(doctor => doctor.email) }
-        }).select('-password')
-        const recordsByEmail = new Map(records.map(doctor => [doctor.email, doctor]))
-        const doctors = doctorsByImage.flatMap((doctor, index) => {
-            const record = recordsByEmail.get(doctor.email)
-            if (!record) return []
+            email: {
+                $in: doctorsByImage.map(doctor => doctor.email)
+            }
+        }).select("-password");
 
-            const doctorData = record.toObject()
-            delete doctorData.email
+        const recordsByEmail = new Map(
+            records.map(doctor => [doctor.email, doctor])
+        );
+
+        const doctors = doctorsByImage.flatMap((doctor, index) => {
+            const record = recordsByEmail.get(doctor.email);
+
+            if (!record) return [];
+
+            const doctorData = record.toObject();
+            delete doctorData.email;
+
             return [{
                 ...doctorData,
                 name: doctor.name,
                 image: `/doctor-images/doc${index + 1}.png`
-            }]
-        })
+            }];
+        });
 
         if (doctors.length !== doctorsByImage.length) {
             return res.status(503).json({
                 success: false,
-                message: 'The doctor catalog is incomplete. Run npm run seed in the backend directory.'
-            })
+                message: "The doctor catalog is incomplete. Run npm run seed in the backend directory."
+            });
         }
-=======
-        const doctors = await doctorModel.find({}).sort({ date: -1 }).select(['-password','-email'])
->>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
 
-        res.json({success:true,doctors})
+        return res.json({
+            success: true,
+            doctors
+        });
     } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message })
-    }
-}
+        console.error(error);
 
-export {changeAvailability,doctorList}
+        return res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
+};
+
+export { changeAvailability, doctorList };

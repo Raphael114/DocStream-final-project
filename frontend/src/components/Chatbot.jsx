@@ -95,7 +95,11 @@ export default function Chatbot() {
 
             {messages.map((m, idx) => (
               <div key={idx} className={`ds-chat-message ${m.role==='user' ? 'user':''}`}>
-                {m.content}
+                {m.content.split(/([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi).map((part, partIndex) =>
+                  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(part)
+                    ? <a key={partIndex} href={`mailto:${part}`}>{part}</a>
+                    : part
+                )}
               </div>
             ))}
 
@@ -109,7 +113,7 @@ export default function Chatbot() {
             <button onClick={send} disabled={loading || !input.trim()} className='ds-chat-toggle' style={{width:44,height:44,padding:0}}>Send</button>
           </div>
 
-          <div className='ds-chat-footer'>Tip: use this assistant to get answers quickly. For powerful answers, configure an LLM API key in the backend (OPENAI_API_KEY).</div>
+          <div className='ds-chat-footer'>I can find doctors from the directory. I can’t diagnose symptoms; contact emergency services for urgent concerns.</div>
         </div>
       )}
     </div>

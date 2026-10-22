@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AppContext } from '../context/AppContext';
+import { AppContext } from '../context/AppContext.js';
 import { assets } from '../assets/assets';
 import RelatedDoctors from '../components/RelatedDoctors';
 import DoctorImage from '../components/DoctorImage';
@@ -138,11 +138,15 @@ const Appointment = () => {
         {/* Doctor Details */}
         <div className="flex flex-col sm:flex-row gap-4">
           <div>
-<<<<<<< HEAD
-            <DoctorImage className="bg-blue-400 w-full sm:max-w-72 rounded-lg" image={docInfo.image} backendUrl={backendUrl} index={doctors.indexOf(docInfo)} name={docInfo.name} />
-=======
-            <img className="bg-blue-400 w-full sm:max-w-72 rounded-lg" src={getDoctorImage(docInfo.image)} alt={docInfo.name} />
->>>>>>> 381365d4409df923f3aa6668d430cc3babea059f
+
+<div>
+  <img
+    className="bg-blue-400 w-full sm:max-w-72 rounded-lg"
+    src={getDoctorImage(docInfo.image)}
+    alt={docInfo.name}
+  />
+</div>
+
           </div>
 
           <div className="flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-white mx-2 sm:mx-0 mt-[-80px] sm:mt-0">
